@@ -7,11 +7,11 @@
     <img src="{{ $.Site.Params.Logo.path }}" alt="{{ $.Site.Params.Logo.alt }}" />  */}}
     
 
-      {{ if eq "Params.type" "book" }}}
+      {{ if eq "$.Site.Params.type" "book" }}}
        <span class="logo__mark">{{ partial "greater-icon.html" . }}</span>
        <span class="logo__text"> /{{ $.Site.Params.Logo.logoText }}books/ </span>
        <span class="logo__cursor"></span>
-      {{ else if eq "Params.type" "post" }}
+      {{ else if eq "$.Site.Params.type" "post" }}
       <span class="logo__mark">{{ partial "greater-icon.html" . }}</span>
       <span class="logo__text"> /{{ $.Site.Params.Logo.logoText }}{{ $.Page.File.BaseFileName }} </span>
       <span class="logo__cursor"></span>
