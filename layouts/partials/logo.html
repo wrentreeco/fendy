@@ -7,7 +7,7 @@
     <img src="{{ $.Site.Params.Logo.path }}" alt="{{ $.Site.Params.Logo.alt }}" />  */}}
     
 
-      {{ if eq .Params.type "book" }}}
+      {{ if eq .Params.type "book" }}
        <span class="logo__mark">{{ partial "greater-icon.html" . }}</span>
        <span class="logo__text"> /{{ $.Site.Params.Logo.logoText }}books/ </span>
        <span class="logo__cursor"></span>

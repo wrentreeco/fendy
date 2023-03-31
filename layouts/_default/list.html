@@ -1,6 +1,6 @@
 {{ define "main" }}
   <div class="posts">
-    {{ range .Pages }}
+    {{ range where .Pages "Params.type" "post" }}
       <article class="post on-list">
         {{/*  <h1 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>  */}}
         <div class="post-meta">
@@ -60,7 +60,7 @@
   </div>
 
   <div class="books">
-    {{ range .Pages }}
+    {{ range where .Pages "Params.type" "book" }}
       <article class="book on-list">
         <h1 class="book-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
         <div class="book-meta">
