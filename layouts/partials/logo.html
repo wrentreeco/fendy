@@ -5,14 +5,19 @@
 >
   {{ if $.Site.Params.Logo.path }}
     <img src="{{ $.Site.Params.Logo.path }}" alt="{{ $.Site.Params.Logo.alt }}" />
-    {{ else if $.Page.File.Dir eq "book/" }}
-    <span class="logo__mark">{{ partial "greater-icon.html" . }}</span>
-    <span class="logo__text"> /{{ $.Site.Params.Logo.logoText }}books </span>
-    <span class="logo__cursor"></span>
-    {{ else }}
+    
+    {{ range where .Site.Pages "Params.type" "book" }}
+      <span class="logo__mark">{{ partial "greater-icon.html" . }}</span>
+      <span class="logo__text"> /{{ $.Site.Params.Logo.logoText }}books/ </span>
+      <span class="logo__cursor"></span>
+    {{ end }}
+
+    {{ range where .Site.Pages "Params.type" "post" }}
     <span class="logo__mark">{{ partial "greater-icon.html" . }}</span>
     <span class="logo__text"> /{{ $.Site.Params.Logo.logoText }}{{ $.Page.File.BaseFileName }} </span>
     <span class="logo__cursor"></span>
+    {{ end }}
+
   {{ end }}
 </a>
 
