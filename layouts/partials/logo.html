@@ -9,11 +9,11 @@
 
       {{ if eq .Params.type "book" }}
        <span class="logo__mark">{{ partial "greater-icon.html" . }}</span>
-       <span class="logo__text"> /{{ $.Site.Params.Logo.logoText }}books/ </span>
+       <span class="logo__text"> /{{ $.Site.Params.Logo.logoText }}<u>books</u>/ </span>
        <span class="logo__cursor"></span>
       {{ else if eq .Params.type "post" }}
       <span class="logo__mark">{{ partial "greater-icon.html" . }}</span>
-      <span class="logo__text"> /{{ $.Site.Params.Logo.logoText }}{{ $.Page.File.BaseFileName }} </span>
+      <span class="logo__text"> /{{ $.Site.Params.Logo.logoText }}<u>{{ $.Page.File.BaseFileName }}</u></span>
       <span class="logo__cursor"></span>
       {{ else }}
       <span class="logo__mark">{{ partial "greater-icon.html" . }}</span>
