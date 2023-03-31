@@ -1,6 +1,6 @@
 {{ define "main" }}
   <div class="posts">
-    {{ range where .Pages "Params.type" "post" }}
+    {{ range .Pages }}
       <article class="post on-list">
         <h1 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
         <div class="post-meta">
