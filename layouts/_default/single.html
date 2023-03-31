@@ -88,11 +88,12 @@
       {{ end }}
     {{ end }}
   </article>
+  
   <article class="book">
-    <h1 class="post-title">{{ .Title | markdownify }}</h1>
-    <div class="post-meta">
+    <h1 class="book-title">{{ .Title | markdownify }}</h1>
+    <div class="book-meta">
       {{ if .Date | default nil }}
-        <time class="post-date">
+        <time class="book-date">
           {{ .Date.Format ($.Site.Params.DateFormatSingle | default "2006-01-02") }}
         </time>
 
@@ -104,8 +105,8 @@
       {{ end }}
 
       {{ with .Params.Author }}
-        <span class="post-author"
-          >— {{ $.Site.Params.WrittenBy | default "post written by" }} {{ . }}</span
+        <span class="book-postauthor"
+          >— {{ $.Site.Params.WrittenBy | default "written by" }} {{ . }}</span
         >{{ end }}
 
       {{ with .Params.BookAuthor }}
@@ -150,7 +151,7 @@
 
 
       {{ if $.Site.Params.ShowReadingTime }}
-        <span class="post-read-time"
+        <span class="book-postread-time"
           >— {{ .ReadingTime }} {{ $.Site.Params.MinuteReadingTime | default "min read" }}</span
         >
       {{ end }}
@@ -159,7 +160,7 @@
     </div>
 
     {{ if .Params.tags }}
-      <span class="post-tags">
+      <span class="book-tags">
         {{ range .Params.tags }}
           <a href="{{ (urlize (printf "tags/%s" . )) | absLangURL }}/">#{{ . }}</a>&nbsp;
         {{ end }}
@@ -170,7 +171,7 @@
       {{ partial "postcover.html" . }}
     {{ end }}
 
-    <div class="post-content">
+    <div class="book-content">
       {{ if or .Params.Toc $.Site.Params.Toc }}
         {{ if ne .Params.Toc false }}
         <h2>Table of Contents</h2>
