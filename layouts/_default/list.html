@@ -2,7 +2,7 @@
   <div class="posts">
     {{ range where .Pages "Params.type" "post" }}
       <article class="post on-list">
-        {{/*  <h1 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>  */}}
+        <h1 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
         <div class="post-meta">
           {{ if .Date }}
             <time class="post-date">
@@ -24,6 +24,15 @@
               >— {{ .ReadingTime }} {{ $.Site.Params.MinuteReadingTime | default "min read" }}</span
             >
           {{ end }}
+
+          {{ if eq .Params.type "book" }}
+            <h2 class="book-details" Book Details</h2>
+            <div class="book-meta"
+              >— {{ .Params.bookAuthor }}<br />{{ .Params.bookPublished }}<br />{{ .Params.bookStarted }}<br />{{ .Params.bookFinished }}<br />{{ .Params.bookLength }}<br />{{ .Params.bookGenre }}<br />{{ .Params.bookISBN13 }}<br />{{ .Params.bookAmznLink }}
+
+            </div>  
+          {{ end }}
+
         </div>
 
         {{ if .Params.tags }}
@@ -39,66 +48,6 @@
         {{ end }}
 
         <div class="post-content">
-          {{ with .Description }}
-            {{ . | markdownify }}
-            {{ else }}
-            {{ if .Truncated }}
-              {{ .Summary }}
-            {{ end }}
-          {{ end }}
-        </div>
-        {{ if not .Params.hideReadMore }}
-          <div>
-            <a class="read-more button" href="{{ .RelPermalink }}"
-              >{{ $.Site.Params.ReadMore | default "Read more" }} →</a
-            >
-          </div>
-        {{ end }}
-      </article>
-    {{ end }}
-    {{ partial "pagination.html" . }}
-  </div>
-
-  <div class="books">
-    {{ range where .Pages "Params.type" "book" }}
-      <article class="book on-list">
-        <h1 class="book-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
-        <div class="book-meta">
-          {{ if .Date }}
-            <time class="book-date">
-              {{ .Date.Format ($.Site.Params.DateFormatList | default "2006-01-02") }}
-            </time>
-
-            {{ if $.Site.Params.LastModDisplay }}
-              {{ partial "lastmod.html" . }}
-            {{ end }}
-          {{ end }}
-          {{ with .Params.Author }}
-            <span class="book-author"
-              >— {{ $.Site.Params.WrittenBy | default "Written by" }} {{ . }}</span
-            >{{ end }}
-
-
-          {{ if $.Site.Params.ShowReadingTime }}
-            <span class="book-postread-time"
-              >— {{ .ReadingTime }} {{ $.Site.Params.MinuteReadingTime | default "min read" }}</span
-            >
-          {{ end }}
-        </div>
-
-        {{ if .Params.tags }}
-          <span class="book-tags">
-            {{ range .Params.tags }}
-              <a href="{{ (urlize (printf "tags/%s" . )) | absLangURL }}/">#{{ . }}</a>&nbsp;
-            {{ end }}
-          </span>
-        {{ end }}
-
-        {{ if .Params.Cover }}
-          {{ partial "postcover.html" . }}
-        {{ end }}
-
-        <div class="book-content">
           {{ with .Description }}
             {{ . | markdownify }}
             {{ else }}
